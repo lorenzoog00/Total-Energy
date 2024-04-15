@@ -1,0 +1,29 @@
+
+&control
+  calculation='scf',
+  prefix='Au',
+  tstress = .true.,
+  tprnfor = .true.,
+  outdir='./out_Au',
+  pseudo_dir='/home/lorenzo/pseudos/Au',
+/
+&system
+  ibrav=2,
+  celldm(1)= 7.71,
+  nat=1, 
+  ntyp=1,
+  ecutwfc=90,
+  occupations='smearing', 
+  smearing='gaussian',  
+  degauss=0.01,    
+/
+&electrons
+  diagonalization='david',
+  conv_thr=1.0d-8,
+/
+ATOMIC_SPECIES
+  Au  196.966  Au.pbesol-n-kjpaw_psl.1.0.0.UPF
+ATOMIC_POSITIONS {angstrom}
+  Au 0.00 0.00 0.00 
+K_POINTS {automatic}
+  10 10 10 0 0 0

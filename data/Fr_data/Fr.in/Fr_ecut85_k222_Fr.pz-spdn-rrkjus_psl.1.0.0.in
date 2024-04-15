@@ -1,0 +1,29 @@
+
+&control
+  calculation='scf',
+  prefix='Fr',
+  tstress = .true.,
+  tprnfor = .true.,
+  outdir='./out_Fr',
+  pseudo_dir='/home/lorenzo/pseudos/Fr',
+/
+&system
+  ibrav=2,
+  celldm(1)=6.83,
+  nat=1, 
+  ntyp=1,
+  ecutwfc=85,
+  occupations='smearing', 
+  smearing='gaussian',  
+  degauss=0.01,    
+/
+&electrons
+  diagonalization='david',
+  conv_thr=1.0d-8,
+/
+ATOMIC_SPECIES
+  Fr  223.0  Fr.pz-spdn-rrkjus_psl.1.0.0.UPF
+ATOMIC_POSITIONS {angstrom}
+  Fr 0.00 0.00 0.00 
+K_POINTS {automatic}
+  2 2 2 0 0 0
