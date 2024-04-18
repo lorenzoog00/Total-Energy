@@ -2,76 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Energy Prediction</title>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const elementSelector = document.getElementById('elemento');
-            const pseudoSelector = document.getElementById('pseudopotencial');
-            const pseudos = {
-                'Ag': ['Ag.pbe-n-kjpaw_psl.1.0.0', 'Ag.pbe-n-rrkjus_psl.1.0.0', 'Ag.pbesol-n-kjpaw_psl.1.0.0', 'Ag.pbesol-n-rrkjus_psl.1.0.0'],
-                'Al': ['Al.pbe-n-kjpaw_psl.1.0.0.UPF', 'Al.pbe-nl-kjpaw_psl.1.0.0.UPF', 'Al.pbe-nl-rrkjus_psl.1.0.0.UPF'],
-                'Au': ['Au.pbe-n-kjpaw_psl.1.0.0', 'Au.pbe-n-rrkjus_psl.1.0.0', 'Au.pbesol-n-kjpaw_psl.1.0.0', 'Au.pbesol-n-rrkjus_psl.1.0.0'],
-                'Cu': ['Cu.pbe-dn-kjpaw_psl.1.0.0', 'Cu.pbe-dn-rrkjus_psl.1.0.0', 'Cu.pbesol-dn-kjpaw_psl.1.0.0', 'Cu.pbesol-dn-rrkjus_psl.1.0.0'],
-                'Fr': ['Fr.pbe-spdn-kjpaw_psl.1.0.0', 'Fr.pbe-spdn-rrkjus_psl.1.0.0', 'Fr.pz-spdn-kjpaw_psl.1.0.0', 'Fr.pz-spdn-rrkjus_psl.1.0.0'],
-                'K':  ['K.pbe-spn-kjpaw_psl.1.0.0', 'K.pbe-spn-rrkjus_psl.1.0.0', 'K.pz-spn-rrkjus_psl.1.0.0', 'K.pz-spn-kjpaw_psl.1.0.0'],
-                'Ni': ['Ni.pbesol-spn-kjpaw_psl.1.0.0', 'Ni.pbesol-spn-rrkjus_psl.1.0.0', 'Ni.pbe-spn-kjpaw_psl.1.0.0', 'Ni.pbe-spn-rrkjus_psl.1.0.0']
-            };
+    <title>Energy Prediction Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 
-            elementSelector.addEventListener('change', function() {
-                const selectedElement = this.value;
-                const options = pseudos[selectedElement];
-
-                // Clear existing options
-                pseudoSelector.innerHTML = '';
-                
-                // Load new options
-                options.forEach(function(pseudo) {
-                    const option = document.createElement('option');
-                    option.value = pseudo;
-                    option.textContent = pseudo;
-                    pseudoSelector.appendChild(option);
-                });
-            });
-        });
-    </script>
 </head>
 <body>
-    <h1>Energy Prediction Form</h1>
-    <form action="/" method="post">
-        <label for="elemento">Elemento:</label>
-        <select id="elemento" name="elemento">
-            <option value="Ag">Ag</option>
-            <option value="Al">Al</option>
-            <option value="Au">Au</option>
-            <option value="Cu">Cu</option>
-            <option value="Fr">Fr</option>
-            <option value="K">K</option>
-            <option value="Ni">Ni</option>
-        </select><br><br>
-
-        <label for="ecut">Ecut (integer):</label>
-        <input type="number" id="ecut" name="ecut" required><br><br>
-
-        <label for="kpoints">KPoints:</label>
-        <input type="text" id="kpoints" name="kpoints"><br><br>
-
-        <label for="pseudopotencial">Pseudopotencial:</label>
-        <select id="pseudopotencial" name="pseudopotencial"></select><br><br>
-
-        <button type="submit">CALCULAR</button>
-    </form>
-</body>
-<!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
-    <title>Energy Prediction</title>
-</head>
-<body>
-    {% if prediction %}
-        <h2>Predicted Energy: {{ prediction }}</h2>
-    {% endif %}
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
+    <header>
+        <h1>Energy Prediction Project</h1>
+        <p>A project by Lorenzo orozco, Universidad Iberoamericana</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#introduction" style="color: black;">Introduction</a></li>
+            <li><a href="#methodology" style="color: black;">Methodology</a></li>
+            <li><a href="#inputs-outputs" style="color: black;">Inputs and Outputs</a></li>
+            <li><a href="{{ url_for('calculator') }}" style="color: black;">USE THE CALCULATOR</a></li>
+            <li><a href="#conclusion" style="color: black;">Conclusion</a></li>
+          </ul>
+          
+    </nav>
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>Description of the project, its importance, and goals.</p>
+    </section>
+    <section id="methodology">
+        <h2>Methodology</h2>
+        <p>Detailed description of the research methodology.</p>
+    </section>
+    <section id="inputs-outputs">
+        <h2>Inputs and Outputs</h2>
+        <p>Explanation of the data inputs and expected outputs from the calculator.</p>
+    </section>
+    <section id="conclusion">
+        <h2>Conclusion</h2>
+        <p>Summary of findings, potential impact, and future work.</p>
+    </section>
+    <footer>
+        <p>© [Year] [Your Name]. All rights reserved.</p>
+    </footer>
 </body>
 </html>
