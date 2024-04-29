@@ -10,13 +10,14 @@
 <body>
     <header>
         <h1>Energy Prediction Project</h1>
-        <p>A project by Lorenzo orozco, Universidad Iberoamericana</p>
+        <p>A project by Lorenzo Orozco, Universidad Iberoamericana</p>
     </header>
     <nav>
         <ul>
             <li><a href="#introduction" style="color: black;">Introduction</a></li>
             <li><a href="#methodology" style="color: black;">Methodology</a></li>
             <li><a href="#inputs-outputs" style="color: black;">Inputs and Outputs</a></li>
+            <li><a href="#key-concepts" style="color: black;">Key concepts</a></li>
             <li><a href="{{ url_for('calculator') }}" style="color: black;">USE THE CALCULATOR</a></li>
             <li><a href="#conclusion" style="color: black;">Conclusion</a></li>
           </ul>
@@ -24,22 +25,105 @@
     </nav>
     <section id="introduction">
         <h2>Introduction</h2>
-        <p>Description of the project, its importance, and goals.</p>
+        <p>This project focuses on the application of Density Functional Theory (DFT), a quantum mechanical modeling method used to investigate the electronic structure of many-body systems, particularly atoms, molecules, and the condensed phases. Utilizing Quantum Espresso, an open-source software suite for electronic-structure calculations and materials modeling at the nanoscale based on DFT, this paper presents the development of a predictive calculator. The calculator, based on neural networks, estimates the total energy of crystalline systems modeled using Quantum Espresso. It predicts the total energy of a given system based on specific input parameters: the element, the utilized pseudopotential, the k points, and the cutoff value for the kinetic energy of plane waves (ecut). This approach allows for efficient exploration of the parameter space and identification of optimal configurations for more detailed investigations, significantly reducing the time and computational resources required.</p>
     </section>
     <section id="methodology">
         <h2>Methodology</h2>
-        <p>Detailed description of the research methodology.</p>
+        <ol>
+            <li>
+                <strong>Data Acquisition and Preparation:</strong>
+                <ul>
+                    <li>Using Quantum Espresso, perform DFT calculations for various elements and configurations, varying Pseudopotential, K-Points, and Ecut.</li>
+                    <li>The results of these calculations form the database used to train the neural network. For more information on how the database was created, click <a href="https://github.com/lorenzoog00/Total-Energy/tree/main/data" target="_blank">HERE</a></li>
+                </ul>
+            </li>
+            <li>
+                <strong>Software and Libraries:</strong>
+                <ul>
+                    <li>Quantum Espresso for DFT calculations.</li>
+                    <li>Python libraries including pandas, sklearn, tensorflow, numpy, matplotlib.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Data Cleaning and Transformation:</strong>
+                <ul>
+                    <li>Remove rows with missing data and non-numerical entries.</li>
+                    <li>Convert the 'Total Energy (Ry)' column to float and the 'Ecut' column to integer.</li>
+                    <li>This image presents the database before the normalizations it went through.</li>
+                    <li><img src="../static/cleanDF.png" alt="Columns of the database after the cleaning process" width="auto" height="auto"></li>
+                    <li>Normalization of data using OneHotEncoder for categorical data (pseudopotential, KPoints, Element) and StandardScaler for numerical data (Ecut).</li>
+                    <li>Split the data into training and testing sets (X_train, X_test, y_train, y_test).</li>
+                </ul>          
+                      
+            </li>
+            <li>
+                <strong>Parameter Tuning and Neural Network Training:</strong>
+                <ul>
+                    <li>The neural network model was trained using a function that dynamically adjusts in each iteration. Parameters adjusted include:
+                        <ul>
+                            <li>Number of neurons in each layer.</li>
+                            <li>Validation split.</li>
+                            <li>Batch size.</li>
+                        </ul>
+                    </li>
+                    <li>For more information on how the network was created, see the detailed documentation on GitHub: <a href="https://github.com/lorenzoog00/Total-Energy/blob/main/red/Creacion.ipynb" target="_blank">Network Creation Notebook</a>.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Evaluation Metrics:</strong>
+                <ul>
+                    <li>The performance of each trained neural network was evaluated by calculating the Mean Absolute Error (MAE).</li>
+                    <li>The lowest error achieved was MAE = 0.1829, indicating that on average, each prediction by the network is approximately 0.1829 units away from the theoretical value.</li>
+                </ul>
+            </li>
+        </ol>
     </section>
+
+    <section id="key-concepts">
+        <h2>Understanding the Basics</h2>
+        <p>This section provides a straightforward explanation of the crucial terms and concepts used in the calculator.</p>
+        <ul>
+            <li><u>Pseudopotential:</u> The pseudopotential is an approach to simplify the complex effects of the motion in an atom. This adjustment allows for more manageable and less computationally intensive calculations while maintaining essential accuracy.</li>
+            <li><u>Cutoff Energy (Ecut):</u> This term refers to the maximum kinetic energy that plane waves can carry in the simulations.</li>
+            <li><u>K Points:</u> The points in the reciprocal space that are used to sample the Brillouin zone in periodic systems. The density and distribution of k-points affect the precision of the electronic structure calculations.</li>
+            <li><u>Elements:</u> Each element's unique properties influence the overall behavior and outcomes of the computational studies.</li>
+            <li><u>Total Energy:</u> The sum of all kinetic and potential energies of the electrons in the system. Predicting total energy accurately is essential for understanding material properties at the atomic level.</li>
+        </ul>
+    </section>
+    
+
     <section id="inputs-outputs">
         <h2>Inputs and Outputs</h2>
-        <p>Explanation of the data inputs and expected outputs from the calculator.</p>
+        <p>Explanation of the data inputs and expected outputs from the calculator:</p>
+        <ul>
+            <li><strong>Inputs:</strong>
+                <ul>
+                    <li><u>Element:</u> The chemical element for which the energy is being predicted.</li>
+                    <li><u>Pseudopotential:</u> The type of pseudopotential used in the calculation.</li>
+                    <li><u>K Points:</u> The density of the k-points grid used in the simulation.</li>
+                    <li><u>Ecut (Energy Cutoff):</u> The cutoff energy for plane waves, determining the precision of the calculation.</li>
+                </ul>
+            </li>
+            <li><strong>Outputs:</strong>
+                <ul>
+                    <li><u>Total Energy:</u> The predicted total energy of the system, expressed in Rydbergs (Ry).</li>
+                </ul>
+            </li>
+        </ul>
     </section>
     <section id="conclusion">
         <h2>Conclusion</h2>
-        <p>Summary of findings, potential impact, and future work.</p>
+        <p>
+            In this study, a successful predictive model was developed using neural networks to predict the total energy of crystalline systems with a Mean Absolute Error (MAE) of 0.1829. The model involves a wide set of seven elements, several pseudopotentials (four for each element), a k-point grid from 1x1x1 up to 12x12x12, and an energy cut (ecut) in a range from 0 to 110 Ry. The wide scope shows how capable a model is to work in a parameter space that counts many, varied, and diverse scenarios for computational chemistry.
+            
+            In this recommendation, for those applications with a need for preciseness in energy calculations, the use of such tools as Quantum ESPRESSO or any other DFT-based software still stands. This model offers a viable, resourceful alternative for preliminary assessment or scenarios where an order of magnitude on an approximate energy value suffices.
+            
+            It is, of course, computationally costly, extending this database to a larger set of elements and pseudopotentials, but it is the present limitation of the model. While this gives a model to work with, the relatively high mean absolute error against direct DFT calculations points a direction to refine. So, improving the accuracy of this model becomes paramount if it is ever to furnish a tool with which researchers can depend for preliminary energy estimations in material science research.
+            
+            Future work will focus on the dataset's expansion to encompass a more comprehensive range of elements and pseudopotentials, hence broadening its applicability and allowing the model to make better predictions. Further research should also make the training process and algorithmic efficiency more refined to reduce the MAE closer to the precision by traditional DFT methods..</p>
     </section>
     <footer>
-        <p>© [Year] [Your Name]. All rights reserved.</p>
+        <p>© [2024] [Lorenzo Orozco].</p>
     </footer>
 </body>
 </html>
