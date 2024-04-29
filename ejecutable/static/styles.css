@@ -1,71 +1,184 @@
+/* Base styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Updated font for a more modern look */
     margin: 0;
     padding: 0;
-    background: #f4f4f4;
+    background: #f9f9f9; /* Lighter background for a fresher feel */
     font-size: 16px; /* Default font size for body text */
+    color: #333; /* Dark grey color for text */
 }
 
+/* Header styles */
 header {
-    background: #007BFF;
+    background: #0056b3; /* Slightly darker blue for a more professional appearance */
     color: white;
-    padding: 10px 20px;
+    padding: 20px 40px; /* Increased padding for a better visual hierarchy */
     text-align: center;
-    font-size: 20px; /* Larger font size for header */
+    font-size: 24px; /* Increased font size for header */
 }
 
+/* Navigation styles */
 nav ul {
     list-style-type: none;
+    margin: 0;
     padding: 0;
+    background: #004080; /* Darker shade for nav to distinguish from header */
+    text-align: center;
 }
 
 nav ul li {
-    display: inline;
-    margin-right: 10px;
+    display: inline-block; /* Changed to inline-block for better control */
+    margin-right: 15px;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 18px; /* Font size for navigation links */
+    font-size: 18px;
+    padding: 10px 20px; /* Padding for better touch targets */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
+nav ul li a:hover {
+    background-color: #003366; /* Subtle change on hover for interactivity */
+}
+
+/* Section styles */
 section {
-    margin: 20px;
+    margin: 20px 30px; /* Adjusted margins for better layout */
     padding: 20px;
-    background: white;
-    border-radius: 8px;
+    background: #ffffff; /* Pure white background for clarity */
+    border: 1px solid #ddd; /* Subtle border */
+    border-radius: 10px; /* Smoothed borders for modern aesthetics */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Soft shadow for depth */
+}
+
+/* Typography styles */
+h1, h3 {
+    font-weight: normal; /* Softer weight for titles */
+    color: #f9f9f9; /* Uniform color for headings */
 }
 
 h2 {
-    font-size: 24px; /* Font size for section headers */
-    color: #333; /* Dark grey color for better readability */
+    font-size: 22px; /* Adjusted font size for section headers */
+    font-weight: normal;
+    color: #000000;
+    margin-bottom: 10px; /* Space below headers */
 }
 
+p {
+    line-height: 1.6; /* Improved line spacing for readability */
+}
+
+/* Footer styles */
 footer {
     text-align: center;
-    padding: 10px 0;
-    background: #007BFF;
+    padding: 20px 0;
+    background: #0056b3;
     color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    font-size: 16px; /* Consistent font size with the body */
+    font-size: 16px;
+}
+
+/* Additional adjustments and element styles */
+a {
+    color: #0066cc; /* Brighter blue for links to stand out */
+    text-decoration: underline; /* Ensure links are identifiable */
+}
+
+a:hover {
+    color: #0056b3; /* Darker blue on hover for effect */
+}
+
+img {
+    max-width: 100%; /* Responsive images */
+    height: auto;
+}
+
+/* Utility classes for common use */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: 0 10px; /* Slight padding on smaller screens */
+    }
+
+    nav ul {
+        text-align: left;
+    }
+
+    nav ul li {
+        display: block; /* Stack nav items on smaller screens */
+    }
+}
+
+/* Calculator Form Styles */
+.calculator-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: grid;
+    grid-gap: 20px;
+    max-width: 600px;
+    margin: 30px auto;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 16px;
+    color: #0056b3;
+    margin-bottom: 5px;
+}
+
+input[type="number"],
+input[type="text"],
+select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.btn-calculate {
+    background-color: #004080;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-calculate:hover {
+    background-color: #002050;
 }
 
 /* Results Section Styles */
+#results {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
 #results h2 {
-    font-size: 24px; /* Larger font size for emphasis */
-    font-weight: bold; /* Bold font for visibility */
-    color: #333; /* Dark grey color for better readability */
-    padding: 10px;
-    background-color: transparent; /* Light grey background for distinction */
-    border-radius: 5px; /* Rounded corners for aesthetic */
-    margin: 20px 0; /* Spacing for visual separation */
+    color: #333;
+    font-size: 22px;
 }
 
 #results p {
     font-size: 18px;
-    color: red; /* Maintaining red color for error messages */
-    padding: 10px;
+    color: red;
 }
